@@ -7,12 +7,11 @@ double measurement = 0.0;
 
 void setup() {
   Serial.begin(115200);
-  controller.standbyPID();
+  controller.resetPID();
 }
 
 void loop() {
-  double error = setpoint - measurement;
-  double output = controller.updatePID(error);
+  const double output = controller.updatePID(setpoint, measurement);
 
   Serial.println(output);
   delay(10);
